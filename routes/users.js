@@ -1,13 +1,13 @@
 const express   = require('express');
-const passport  = require('passport');
 const { check } = require('express-validator/check');
 
 const UserCtrl     = require('../controllers/users');
 const { validate } = require('../utilities/validate');
+const { jwtAuthenticator } = require('../utilities/jwt-authenticator');
 
 const router  = express.Router();
 
-router.get('/', passport.authenticate('jwt',{session:false}), function(req, res, next) {
+router.get('/', jwtAuthenticator, function(req, res, next) {
   res.send('respond with a resource');
 });
 
@@ -16,6 +16,7 @@ router.post(
   [
     check('username').isEmail(),
     check('password').isLength({ min: 8 }).isAlphanumeric(),
+    check('user_type_id').isNumeric(),
   ],
   validate,
   UserCtrl.register);
