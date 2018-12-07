@@ -5,8 +5,9 @@ const logger        = require('morgan');
 const cors          = require('cors');
 const passport      = require('passport');
 
-const indexRouter = require('./routes/index');
-const usersRouter = require('./routes/users');
+const indexRouter     = require('./routes/index');
+const usersRouter     = require('./routes/users');
+const profilesRouter  = require('./routes/profiles');
 const configureJwtStrategy = require('./utilities/jwt-strategy');
 
 const app = express();
@@ -24,5 +25,6 @@ configureJwtStrategy(passport);
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.use('/profiles', profilesRouter);
 
 module.exports = app;
