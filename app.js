@@ -8,6 +8,8 @@ const passport      = require('passport');
 const indexRouter     = require('./routes/index');
 const usersRouter     = require('./routes/users');
 const profilesRouter  = require('./routes/profiles');
+const telephoneRouter = require('./routes/telephones');
+
 const configureJwtStrategy = require('./utilities/jwt-strategy');
 
 const app = express();
@@ -26,5 +28,6 @@ configureJwtStrategy(passport);
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/profiles', profilesRouter);
+app.use('/telephones', telephoneRouter);
 
 module.exports = app;

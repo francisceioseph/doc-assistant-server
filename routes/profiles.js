@@ -1,7 +1,6 @@
 const express = require('express');
 
 const ProfileCtrl     = require('../controllers/profiles');
-const { validate } = require('../utilities/validate');
 const { jwtAuthenticator } = require('../utilities/jwt-authenticator');
 
 const router  = express.Router();
