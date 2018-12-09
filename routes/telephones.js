@@ -27,4 +27,9 @@ router.patch('/:telephone_id',
   TelephoneCtrl.update
 );
 
+router.delete('/:telephone_id',
+  jwtAuthenticator,
+  TelephoneCtrl.remove
+);
+
 module.exports = router;

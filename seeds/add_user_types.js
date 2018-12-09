@@ -8,6 +8,7 @@ exports.seed = function(knex, Promise) {
         { user_type_id: 3, user_type_name: "Regulator" },
         { user_type_id: 4, user_type_name: "Pharmacy" },
         { user_type_id: 5, user_type_name: "Doctor" },
+        { user_type_id: 6, user_type_name: "Pacient"},
       ]);
     });
 };

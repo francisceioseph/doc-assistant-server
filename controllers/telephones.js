@@ -35,6 +35,17 @@ const update = async (req, res) => {
   }
 };
 
+const remove = async (req, res) => {
+  try {
+    const { telephone_id } = req.params;
+    const result = await Telephone.remove(telephone_id);
+    
+    res.json(result);
+  } catch(error) {
+    res.status(500).json(error);
+  }
+};
+
 module.exports = {
   create,
   list,

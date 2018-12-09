@@ -20,10 +20,10 @@ exports.up = function(knex, Promise) {
       .defaultTo(knex.fn.now());
 
     table
-    .integer("user_id", 11)
-    .unsigned()
-    .references("user_id")
-    .inTable("users");
+      .integer("user_id", 11)
+      .unsigned()
+      .references("user_id")
+      .inTable("users");
   });
 };
 
