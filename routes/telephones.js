@@ -2,7 +2,6 @@ const { check } = require('express-validator/check');
 const express = require('express');
 const TelephoneCtrl = require('../controllers/telephones');
 
-const ProfileCtrl     = require('../controllers/profiles');
 const { validate } = require('../utilities/validate');
 const { jwtAuthenticator } = require('../utilities/jwt-authenticator');
 

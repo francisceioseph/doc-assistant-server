@@ -1,10 +1,10 @@
-const Telephone = require('../models/telephone');
+const Telephone = require("../models/telephone");
 
 const create = async (req, res) => {
   try {
     const { body } = req;
-    const result   = await Telephone.create(body);
-    
+    const result = await Telephone.create(body);
+
     res.json(result);
   } catch (error) {
     res.status(500).json(error);
@@ -20,7 +20,7 @@ const list = async (req, res) => {
   } catch (error) {
     res.status(500).json(error);
   }
-}
+};
 
 const update = async (req, res) => {
   try {
@@ -39,9 +39,9 @@ const remove = async (req, res) => {
   try {
     const { telephone_id } = req.params;
     const result = await Telephone.remove(telephone_id);
-    
+
     res.json(result);
-  } catch(error) {
+  } catch (error) {
     res.status(500).json(error);
   }
 };
@@ -50,4 +50,5 @@ module.exports = {
   create,
   list,
   update,
+  remove
 };

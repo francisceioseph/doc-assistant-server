@@ -5,10 +5,13 @@ const logger        = require('morgan');
 const cors          = require('cors');
 const passport      = require('passport');
 
-const indexRouter     = require('./routes/index');
-const usersRouter     = require('./routes/users');
-const profilesRouter  = require('./routes/profiles');
-const telephoneRouter = require('./routes/telephones');
+const indexRouter         = require('./routes/index');
+const usersRouter         = require('./routes/users');
+const profilesRouter      = require('./routes/profiles');
+const telephoneRouter     = require('./routes/telephones');
+const appointmentsRouter  = require('./routes/appointments');
+const examsRouter         = require('./routes/exams');
+const surgeriesRouter     = require('./routes/telephones');
 
 const configureJwtStrategy = require('./utilities/jwt-strategy');
 
@@ -29,5 +32,8 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/profiles', profilesRouter);
 app.use('/telephones', telephoneRouter);
+app.use('/appointments', appointmentsRouter);
+app.use('/exams', examsRouter);
+app.use('/surgeries', surgeriesRouter);
 
 module.exports = app;
