@@ -3,11 +3,6 @@ exports.up = function(knex, Promise) {
     table.increments("user_id");
     table.string("username");
     table.string("password");
-    table
-      .integer("user_type_id", 11)
-      .unsigned()
-      .references("user_type_id")
-      .inTable("user_types");
     table.timestamp("created_at").defaultTo(knex.fn.now());
 
     table.unique("username");

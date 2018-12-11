@@ -5,11 +5,13 @@ const User    = require('../models/user');
 const Profile = require('../models/profile');
 
 const register = async (req, res) => {  
-  const data = req.body;
-
   try {
+    const { profile_type_id, ...data } = req.body;
     const user = await User.create(data);
-    await Profile.create({ user_id: user[0] });
+    await Profile.create({ 
+      profile_type_id,
+      user_id: user[0]
+     });
 
     res.json(user);
   } catch (error) {

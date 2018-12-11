@@ -18,7 +18,7 @@ router.post(
     check("password")
       .isLength({ min: 8 })
       .isAlphanumeric(),
-    check("user_type_id").isNumeric()
+    check("profile_type_id").isNumeric()
   ],
   validate,
   UserCtrl.register

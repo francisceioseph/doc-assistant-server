@@ -24,6 +24,12 @@ exports.up = function(knex, Promise) {
       .unsigned()
       .references("user_id")
       .inTable("users");
+
+    table
+      .integer("profile_type_id", 11)
+      .unsigned()
+      .references("user_type_id")
+      .inTable("user_types");
   });
 };
 
