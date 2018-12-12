@@ -13,6 +13,11 @@ const retrieve = user_id =>
     .select()
     .where({ user_id });
 
+const retrieveByID = user_profile_id =>
+  db("user_profiles")
+    .select()
+    .where({ user_profile_id });
+
 const list = () => db("user_profiles").select();
 
 const remove = user_id =>
@@ -24,6 +29,7 @@ module.exports = {
   create,
   update,
   retrieve,
+  retrieveByID,
   remove,
   list
 };

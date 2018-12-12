@@ -6,14 +6,17 @@ const Profile = require('../models/profile');
 
 const register = async (req, res) => {  
   try {
-    const { profile_type_id, ...data } = req.body;
-    const user = await User.create(data);
-    await Profile.create({ 
-      profile_type_id,
-      user_id: user[0]
-     });
+    const { user, profile } = req.body;
+    const [user_id] = await User.create(user);
+    const [profile_id] = await Profile.create({ user_id, ...profile });
 
-    res.json(user);
+    const [user_record] = await User.retrieve(user.username);
+    const [profile_record] = await Profile.retrieve(user_id);
+
+    res.json({
+      user: user_record,
+      profile: profile_record
+    });
   } catch (error) {
     res.status(500).json(error);
   }
@@ -45,7 +48,23 @@ const authenticate = async (req, res) => {
   }
 };
 
+const registerPacient = async(req, res) => {
+  try {
+    const { profile } = req.body;
+    const [profile_id] = await Profile.create(profile);
+
+    const [profile_record] = await Profile.retrieveByID(profile_id);
+
+    res.json({
+      profile: profile_record
+    });
+  } catch (error) {
+    res.status(500).json(error);
+  }
+}
+
 module.exports = {
   register,
+  registerPacient,
   authenticate,
 };

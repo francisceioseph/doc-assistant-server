@@ -12,13 +12,22 @@ router.get("/", jwtAuthenticator, function(req, res, next) {
 });
 
 router.post(
+  "/register/pacient",
+  [
+    check("profile.profile_type_id").isNumeric()
+  ],
+  validate,
+  UserCtrl.registerPacient
+);
+
+router.post(
   "/register",
   [
-    check("username").isEmail(),
-    check("password")
+    check("user.username").isEmail(),
+    check("user.password")
       .isLength({ min: 8 })
       .isAlphanumeric(),
-    check("profile_type_id").isNumeric()
+    check("profile.profile_type_id").isNumeric()
   ],
   validate,
   UserCtrl.register
