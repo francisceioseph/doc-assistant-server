@@ -12,7 +12,7 @@ router.get("/", jwtAuthenticator, function(req, res, next) {
 });
 
 router.post(
-  "/register/pacient",
+  "/pacient/new",
   [
     check("profile.profile_type_id").isNumeric()
   ],
