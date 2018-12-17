@@ -20,6 +20,11 @@ const retrieveByID = user_profile_id =>
 
 const list = () => db("user_profiles").select();
 
+const listBy = filter =>
+  db("user_profiles")
+    .select()
+    .where(filter);
+
 const remove = user_id =>
   db("user_profiles")
     .del()
@@ -31,5 +36,6 @@ module.exports = {
   retrieve,
   retrieveByID,
   remove,
-  list
+  list,
+  listByType: listBy
 };

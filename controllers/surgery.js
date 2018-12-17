@@ -15,7 +15,7 @@ exports.create = async (req, res) => {
 exports.retrieve = async (req, res) => {
   try {
     const { surgery_id } = req.params;
-    const surgery = Surgery.retrieve(surgery_id);
+    const surgery = await Surgery.retrieve(surgery_id);
 
     res.json(surgery);
   } catch (error) {
@@ -39,7 +39,7 @@ exports.edit = async (req, res) => {
 
     await Surgery.update(data, surgery_id);
 
-    const surgery = Surgery.retrieve(surgery_id);
+    const surgery = await Surgery.retrieve(surgery_id);
     res.json(surgery);
   } catch (error) {
     res.status(500).json(error);
@@ -49,7 +49,7 @@ exports.edit = async (req, res) => {
 exports.remove = async (req, res) => {
   try {
     const { surgery_id } = req.params;
-    const result = Surgery.remove(surgery_id);
+    const result = await Surgery.remove(surgery_id);
     res.json(result);
   } catch (error) {
     res.status(500).json(error);

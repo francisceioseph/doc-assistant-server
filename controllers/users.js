@@ -24,7 +24,7 @@ const register = async (req, res) => {
 
 const authenticate = async (req, res) => {
   try {
-    const [user] = await User.retrieveWithPassword(req.body.username);
+    const [user]    = await User.retrieveWithPassword(req.body.username);
 
     if (!user) {
       return res.status(422).json({ message: 'Incorrect username.' });
@@ -34,12 +34,16 @@ const authenticate = async (req, res) => {
       return res.status(422).json({ message: 'Incorrect password.' });
     }
 
-    const { password, ...plainUser } = user;
-    const token    = jwt.sign(plainUser, process.env.JWT_SECRET, { expiresIn: 604800 });
+    const [profile] = await Profile.retrieve(user.user_id);
+    const { password, ...rest } = user;
+    const token    = jwt.sign(rest, process.env.JWT_SECRET, { expiresIn: 604800 });
     const response = {
       success: true,
       token: `JWT ${token}`,
-      user: plainUser,
+      user: {
+        ...rest,
+        profile,
+      },
     };
 
     return res.json(response);

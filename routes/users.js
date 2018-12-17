@@ -2,23 +2,10 @@ const express = require("express");
 const { check } = require("express-validator/check");
 
 const UserCtrl = require("../controllers/users");
+const PacientRoutes = require('./pacients');
 const { validate } = require("../utilities/validate");
-const { jwtAuthenticator } = require("../utilities/jwt-authenticator");
 
 const router = express.Router();
-
-router.get("/", jwtAuthenticator, function(req, res, next) {
-  res.status("respond with a resource");
-});
-
-router.post(
-  "/pacient/new",
-  [
-    check("profile.profile_type_id").isNumeric()
-  ],
-  validate,
-  UserCtrl.registerPacient
-);
 
 router.post(
   "/register",
@@ -45,4 +32,5 @@ router.post(
   UserCtrl.authenticate
 );
 
+router.use('/pacients', PacientRoutes);
 module.exports = router;
