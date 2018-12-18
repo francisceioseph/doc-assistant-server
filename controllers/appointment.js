@@ -29,6 +29,15 @@ exports.list = async (req, res) => {
   }
 };
 
+exports.listTypes = async (req, res) => {
+  try {
+    const appointmentTypes = await Appointment.listTypes();
+    res.json(appointmentTypes);
+  } catch (error) {
+    res.status(500).send(error);
+  }
+}
+
 exports.edit = async (req, res) => {
   try {
     await Appointment.update(req.body, req.params.appointment_id);

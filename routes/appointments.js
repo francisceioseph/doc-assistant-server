@@ -10,6 +10,8 @@ const router = express.Router();
 
 router.get("/", jwtAuthenticator, AppointmentCtrl.list);
 
+router.get("/types", jwtAuthenticator, AppointmentCtrl.listTypes);
+
 router.get("/:appointment_id", jwtAuthenticator, AppointmentCtrl.retrieve);
 
 router.post("/new", jwtAuthenticator, AppointmentCtrl.create);

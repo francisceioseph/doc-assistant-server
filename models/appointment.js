@@ -8,10 +8,22 @@ exports.list = () =>
     .select()
     .where({ canceled: false });
 
+exports.listTypes = () => 
+  db("appointment_types")
+    .select()
+    .reduce(
+      (acc, appointmentType) => {
+        const id = appointmentType.appointment_type_id;
+        acc[id] = appointmentType;
+        return acc;
+      }, 
+      {});
+
 exports.retrieve = appointment_id =>
   db("appointments")
     .select()
-    .where({ appointment_id });
+    .where({ appointment_id })
+    .first();
 
 exports.update = (data, appointment_id) =>
   db("appointments")
