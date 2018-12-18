@@ -1,9 +1,11 @@
-const express = require("express");
-const { check } = require("express-validator/check");
+import express from "express";
+import { check } from "express-validator/check";
 
-const UserCtrl = require("../controllers/users");
-const PacientRoutes = require('./pacients');
-const { validate } = require("../utilities/validate");
+import UserCtrl      from "../controllers/users";
+import PacientRoutes from './pacients';
+import DoctorRoutes  from './doctors';
+
+import { validate } from "../utilities/validate";
 
 const router = express.Router();
 
@@ -33,4 +35,5 @@ router.post(
 );
 
 router.use('/pacients', PacientRoutes);
+router.use('/doctors', DoctorRoutes);
 module.exports = router;
