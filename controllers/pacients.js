@@ -10,7 +10,7 @@ exports.create = async (req, res) => {
       profile: profile_record
     });
   } catch (error) {
-    res.status(500).json(error);
+    res.status(500).send(error);
   }
 };
 
@@ -21,7 +21,7 @@ exports.retrieve = async (req, res) => {
 
     res.json(pacient);
   } catch (error) {
-    res.status(500).json(error);
+    res.status(500).send(error);
   }
 };
 
@@ -38,7 +38,7 @@ exports.list = async (req, res) => {
     );
     res.json(pacientsMap);
   } catch (error) {
-    res.status(500).json(error);
+    res.status(500).send(error);
   }
 };
 
@@ -52,7 +52,7 @@ exports.edit = async (req, res) => {
     const surgery = await Profile.retrieve(id);
     res.json(surgery);
   } catch (error) {
-    res.status(500).json(error);
+    res.status(500).send(error);
   }
 };
 

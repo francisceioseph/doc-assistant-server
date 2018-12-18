@@ -26,7 +26,7 @@ const register = async (req, res) => {
       await User.remove(user.username);
     }
 
-    res.status(500).json(error);
+    res.status(500).send(error);
   }
 };
 
@@ -56,7 +56,7 @@ const authenticate = async (req, res) => {
 
     return res.json(response);
   } catch (error) {
-    res.status(500).json(error);
+    res.status(500).send(error);
   }
 };
 
@@ -71,7 +71,7 @@ const registerPacient = async(req, res) => {
       profile: profile_record
     });
   } catch (error) {
-    res.status(500).json(error);
+    res.status(500).send(error);
   }
 }
 

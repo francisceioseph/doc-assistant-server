@@ -13,6 +13,8 @@ const appointmentsRouter  = require('./routes/appointments');
 const examsRouter         = require('./routes/exams');
 const surgeriesRouter     = require('./routes/telephones');
 
+import specialtiesRouter from './routes/specialties';
+
 const configureJwtStrategy = require('./utilities/jwt-strategy');
 
 const app = express();
@@ -35,5 +37,6 @@ app.use('/telephones', telephoneRouter);
 app.use('/appointments', appointmentsRouter);
 app.use('/exams', examsRouter);
 app.use('/surgeries', surgeriesRouter);
+app.use('/specialties', specialtiesRouter);
 
 module.exports = app;

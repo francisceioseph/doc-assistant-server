@@ -6,7 +6,7 @@ exports.create = async (req, res) => {
     const appointment = await Appointment.retrieve(appointment_id);
     res.json(appointment);
   } catch (error) {
-    res.status(500).json(error);
+    res.status(500).send(error);
   }
 };
 
@@ -16,7 +16,7 @@ exports.retrieve = async (req, res) => {
     const appointment = await Appointment.retrieve(appointment_id);
     res.json(appointment);
   } catch (error) {
-    res.status(500).json(error);
+    res.status(500).send(error);
   }
 };
 
@@ -25,7 +25,7 @@ exports.list = async (req, res) => {
     const appointments = await Appointment.list();
     res.json(appointments);
   } catch (error) {
-    res.status(500).json(error);
+    res.status(500).send(error);
   }
 };
 
@@ -35,7 +35,7 @@ exports.edit = async (req, res) => {
     const appointment = await Appointment.retrieve(req.params.appointment_id);
     res.json(appointment);
   } catch (error) {
-    res.status(500).json(error);
+    res.status(500).send(error);
   }
 };
 
@@ -45,6 +45,6 @@ exports.remove = async (req, res) => {
     const response = await Appointment.remove(appointment_id);
     res.json(response);
   } catch (error) {
-    res.status(500).json(error);
+    res.status(500).send(error);
   }
 };

@@ -5,7 +5,7 @@ async function list (req, res) {
     const profiles = await Profile.list();
     res.json(profiles);
   } catch (error) {
-    res.status(500).json(error);
+    res.status(500).send(error);
   }
 };
 
@@ -20,7 +20,7 @@ async function retrieve(req, res) {
 
     res.json(profile);
   } catch (error) {
-    res.status(500).json(error);
+    res.status(500).send(error);
   }
 };
 
@@ -34,7 +34,7 @@ async function update(req, res) {
 
     res.json(updates);
   } catch (error) {
-    res.status(500).json(error);
+    res.status(500).send(error);
   }
 };
 

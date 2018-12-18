@@ -7,7 +7,7 @@ exports.create = async (req, res) => {
     const exam = await Exam.retrieve(exam_id);
     res.json(exam);
   } catch (error) {
-    res.status(500).json(error);
+    res.status(500).send(error);
   }
 };
 
@@ -17,7 +17,7 @@ exports.retrieve = async (req, res) => {
     const exam = await Exam.retrieve(exam_id);
     res.json(exam);
   } catch (error) {
-    res.status(500).json(error);
+    res.status(500).send(error);
   }
 };
 
@@ -26,7 +26,7 @@ exports.list = async (req, res) => {
     const exams = await Exam.list();
     res.json(exams);
   } catch (error) {
-    res.status(500).json(error);
+    res.status(500).send(error);
   }
 };
 
@@ -40,7 +40,7 @@ exports.edit = async (req, res) => {
     const exam = Exam.retrieve(exam_id);
     res.json(exam);
   } catch (error) {
-    res.status(500).json(error);
+    res.status(500).send(error);
   }
 };
 
@@ -49,6 +49,6 @@ exports.remove = async (req, res) => {
     const { exam_id } = req.params;
     const result = Exam.remove(exam_id);
   } catch (error) {
-    res.status(500).json(error);
+    res.status(500).send(error);
   }
 };

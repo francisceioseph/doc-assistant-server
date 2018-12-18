@@ -19,14 +19,6 @@ const updateRequiredFields = [check("user_profile_id").isNumeric()];
 router.get("/", jwtAuthenticator, DoctorCtrl.list);
 router.get("/:id", jwtAuthenticator, DoctorCtrl.retrieve);
 
-router.post(
-  "/new",
-  postRequiredFields,
-  validate,
-  jwtAuthenticator,
-  DoctorCtrl.create
-);
-
 router.patch(
   "/edit/:id",
   updateRequiredFields,
