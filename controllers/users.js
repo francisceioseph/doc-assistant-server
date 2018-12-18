@@ -4,20 +4,28 @@ const bcrypt  = require('bcrypt');
 const User    = require('../models/user');
 const Profile = require('../models/profile');
 
-const register = async (req, res) => {  
+const register = async (req, res) => {
+  let userCreated = false;
+
   try {
     const { user, profile } = req.body;
     const [user_id] = await User.create(user);
-    const [profile_id] = await Profile.create({ user_id, ...profile });
+    userCreated = true;
 
-    const [user_record] = await User.retrieve(user.username);
-    const [profile_record] = await Profile.retrieve(user_id);
+    const [profile_id]      = await Profile.create({ user_id, ...profile });
+    const [user_record]     = await User.retrieve(user.username);
+    const [profile_record]  = await Profile.retrieve(user_id);
 
     res.json({
       user: user_record,
       profile: profile_record
     });
   } catch (error) {
+    if (userCreated) {
+      const { user } = req.body;
+      await User.remove(user.username);
+    }
+
     res.status(500).json(error);
   }
 };

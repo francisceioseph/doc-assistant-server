@@ -28,7 +28,15 @@ exports.retrieve = async (req, res) => {
 exports.list = async (req, res) => {
   try {
     const pacients = await Profile.listByType({ profile_type_id: 6 })
-    res.json(pacients);
+    const pacientsMap = pacients.reduce(
+      (acc, pacient) => {
+        const pacientId = pacient.user_profile_id;
+        acc[pacientId] = pacient;
+        return acc;
+      },
+      {}
+    );
+    res.json(pacientsMap);
   } catch (error) {
     res.status(500).json(error);
   }

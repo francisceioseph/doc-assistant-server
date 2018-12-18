@@ -1,4 +1,5 @@
-const Profile = require("../models/profile");
+import _ from 'lodash';
+import Profile from "../models/profile";
 
 exports.create = async (req, res) => {
   try {
@@ -27,8 +28,16 @@ exports.retrieve = async (req, res) => {
 
 exports.list = async (req, res) => {
   try {
-    const pacients = await Profile.listByType({ profile_type_id: 5 })
-    res.json(pacients);
+    const doctors    = await Profile.listByType({ profile_type_id: 5 });
+    const doctorsMap = doctors.reduce(
+      (acc, profile) => {
+        const profileId = profile.user_profile_id;
+        acc[profileId]  = profile;
+        return acc;
+      },
+      {}
+    );
+    res.json(doctorsMap);
   } catch (error) {
     res.status(500).json(error);
   }
