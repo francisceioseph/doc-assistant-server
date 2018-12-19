@@ -11,14 +11,14 @@ exports.up = function(knex, Promise) {
     table
       .integer("pacient_id", 11)
       .unsigned()
-      .references("user_id")
-      .inTable("users");
+      .references("user_profile_id")
+      .inTable("user_profiles");
 
     table
       .integer("doctor_id", 11)
       .unsigned()
-      .references("user_id")
-      .inTable("users");
+      .references("user_profile_id")
+      .inTable("user_profiles");
 
     table.boolean("canceled").defaultTo(false);
 

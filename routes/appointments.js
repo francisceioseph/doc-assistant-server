@@ -14,7 +14,18 @@ router.get("/types", jwtAuthenticator, AppointmentCtrl.listTypes);
 
 router.get("/:appointment_id", jwtAuthenticator, AppointmentCtrl.retrieve);
 
-router.post("/new", jwtAuthenticator, AppointmentCtrl.create);
+router.post(
+  "/new",
+  [
+    check("pacient_id").isNumeric(),
+    check("doctor_id").isNumeric(),
+    check("appointment_type_id").isNumeric(),
+    check("scheduled_to").exists()
+  ],
+  validate,
+  jwtAuthenticator,
+  AppointmentCtrl.create
+);
 
 router.patch("/edit/:appointment_id", jwtAuthenticator, AppointmentCtrl.edit);
 

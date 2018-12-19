@@ -25,6 +25,7 @@ exports.list = async (req, res) => {
     const appointments = await Appointment.list();
     res.json(appointments);
   } catch (error) {
+    console.log(error);
     res.status(500).send(error);
   }
 };
