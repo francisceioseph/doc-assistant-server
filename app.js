@@ -13,6 +13,7 @@ const appointmentsRouter  = require('./routes/appointments');
 const examsRouter         = require('./routes/exams');
 const surgeriesRouter     = require('./routes/telephones');
 const appTypesRouter      = require('./routes/appointment-types');
+const examTypesRouter      = require('./routes/exam-types');
 
 import specialtiesRouter from './routes/specialties';
 
@@ -36,7 +37,8 @@ app.use('/users', usersRouter);
 app.use('/profiles', profilesRouter);
 app.use('/telephones', telephoneRouter);
 app.use('/appointments', appointmentsRouter);
-app.use('/appointment-types', appTypesRouter)
+app.use('/appointment-types', appTypesRouter);
+app.use('/exam-types', examTypesRouter);
 app.use('/exams', examsRouter);
 app.use('/surgeries', surgeriesRouter);
 app.use('/specialties', specialtiesRouter);
