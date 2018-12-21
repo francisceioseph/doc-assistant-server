@@ -7,6 +7,7 @@ exports.create = async (req, res) => {
     const exam = await Exam.retrieve(exam_id);
     res.json(exam);
   } catch (error) {
+    console.log(error);
     res.status(500).send(error);
   }
 };
@@ -26,9 +27,19 @@ exports.list = async (req, res) => {
     const exams = await Exam.list();
     res.json(exams);
   } catch (error) {
+    console.log(error);
     res.status(500).send(error);
   }
 };
+
+exports.listTypes = async (req, res) => {
+  try {
+    const types = await Exam.listTypes();
+    res.json(types);
+  } catch (error) {
+    res.status(500).send(error);
+  }
+}
 
 exports.edit = async (req, res) => {
   try {

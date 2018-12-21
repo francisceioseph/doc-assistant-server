@@ -10,6 +10,8 @@ const router = express.Router();
 
 router.get("/", jwtAuthenticator, ExamCtrl.list);
 
+router.get("/types", jwtAuthenticator, ExamCtrl.listTypes);
+
 router.get("/:exam_id", jwtAuthenticator, ExamCtrl.retrieve);
 
 router.post("/new", jwtAuthenticator, ExamCtrl.create);
