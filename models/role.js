@@ -22,7 +22,7 @@ function create(data) {
     }));
 
     await trx
-      .batchInsert("permission", rolePermissions, rolePermissions.length)
+      .batchInsert("permissions", rolePermissions, rolePermissions.length)
       .reduce((acc, p) => {
         acc[p.permission_id] = p;
         return acc;
@@ -36,7 +36,7 @@ function create(data) {
 
     const permissionsDB = await trx
       .select()
-      .from("permission")
+      .from("permissions")
       .where({ user_role_id });
 
     return {

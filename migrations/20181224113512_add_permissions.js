@@ -1,5 +1,5 @@
 exports.up = function(knex, Promise) {
-  return knex.schema.createTableIfNotExists("permission", t => {
+  return knex.schema.createTableIfNotExists("permissions", t => {
     t.increments("permission_id");
 
     t.string("resource_name");
@@ -19,5 +19,5 @@ exports.up = function(knex, Promise) {
 };
 
 exports.down = function(knex, Promise) {
-  return knex.schema.dropTableIfExists("permission");
+  return knex.schema.dropTableIfExists("permissions");
 };

@@ -1,7 +1,7 @@
 const dbSettings = require("../knexfile")[process.env.ENVIRONMENT];
 const db = require("knex")(dbSettings);
 
-const permissions = () => db("permission");
+const permissions = () => db("permissions");
 
 const reducer = (acc, permission) => {
   const { permission_id } = permission;
