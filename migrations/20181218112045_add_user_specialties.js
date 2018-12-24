@@ -20,7 +20,6 @@ exports.up = function(knex, Promise) {
       .unsigned()
       .references("user_profile_id")
       .inTable("user_profiles");
-    
   });
 };
 
