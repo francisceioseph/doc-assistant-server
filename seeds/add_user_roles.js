@@ -128,7 +128,7 @@ exports.seed = async (knex, Promise) => {
     },
     {
       permission_id: 10,
-      resource_name: "cadastro-médico",
+      resource_name: "cadastro-medico",
       user_role_id: 1,
       can_write: true,
       can_list: true,

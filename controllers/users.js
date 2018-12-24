@@ -1,8 +1,8 @@
-const jwt     = require('jsonwebtoken');
-const bcrypt  = require('bcrypt');
+const jwt = require("jsonwebtoken");
+const bcrypt = require("bcrypt");
 
-const User    = require('../models/user');
-const Profile = require('../models/profile');
+const User = require("../models/user");
+const Profile = require("../models/profile");
 
 const register = async (req, res) => {
   let userCreated = false;
@@ -12,9 +12,9 @@ const register = async (req, res) => {
     const [user_id] = await User.create(user);
     userCreated = true;
 
-    const [profile_id]      = await Profile.create({ user_id, ...profile });
-    const [user_record]     = await User.retrieve(user.username);
-    const [profile_record]  = await Profile.retrieve(user_id);
+    const [profile_id] = await Profile.create({ user_id, ...profile });
+    const [user_record] = await User.retrieve(user.username);
+    const [profile_record] = await Profile.retrieve(user_id);
 
     res.json({
       user: user_record,
@@ -32,35 +32,33 @@ const register = async (req, res) => {
 
 const authenticate = async (req, res) => {
   try {
-    const [user]    = await User.retrieveWithPassword(req.body.username);
+    const [user] = await User.retrieveWithPassword(req.body.username);
 
     if (!user) {
-      return res.status(422).json({ message: 'Incorrect username.' });
+      return res.status(422).json({ message: "Incorrect username." });
     }
 
-    if(!bcrypt.compareSync(req.body.password, user.password)) {
-      return res.status(422).json({ message: 'Incorrect password.' });
+    if (!bcrypt.compareSync(req.body.password, user.password)) {
+      return res.status(422).json({ message: "Incorrect password." });
     }
 
-    const [profile] = await Profile.retrieve(user.user_id);
-    const { password, ...rest } = user;
-    const token    = jwt.sign(rest, process.env.JWT_SECRET, { expiresIn: 604800 });
+    const userl = await User.lazyRetrieve(req.body.username);
+    const token = jwt.sign(user, process.env.JWT_SECRET, { expiresIn: 604800 });
+
     const response = {
       success: true,
       token: `JWT ${token}`,
-      user: {
-        ...rest,
-        profile,
-      },
+      user: userl
     };
 
     return res.json(response);
   } catch (error) {
+    console.log(error);
     res.status(500).send(error);
   }
 };
 
-const registerPacient = async(req, res) => {
+const registerPacient = async (req, res) => {
   try {
     const { profile } = req.body;
     const [profile_id] = await Profile.create(profile);
@@ -73,10 +71,10 @@ const registerPacient = async(req, res) => {
   } catch (error) {
     res.status(500).send(error);
   }
-}
+};
 
 module.exports = {
   register,
   registerPacient,
-  authenticate,
+  authenticate
 };
